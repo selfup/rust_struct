@@ -31,5 +31,5 @@ fn it_can_move_up_one_pixel() {
 
     move_up(&origin.y);
 
-    assert_eq!(origin_test.x, origin.y);
+    assert_eq!(1, origin.y.get());
 }
