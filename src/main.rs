@@ -32,4 +32,10 @@ fn it_can_move_up_one_pixel() {
     move_up(&origin.y);
 
     assert_eq!(1, origin.y.get());
+
+    move_up(&origin.y);
+    move_up(&origin.y);
+    move_up(&origin.y);
+
+    assert_eq!(4, origin.y.get())
 }
