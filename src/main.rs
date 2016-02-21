@@ -8,7 +8,7 @@ fn main() {
 
     println!("X is {} and Y is {}", origin.x + 1, origin.y + 90);
 
-    let mut v = vec![1, 2, 3, 4, 5];
+    let mut v = vec![1, 2];
 
     for i in &v {
         println!("A reference to {}", i);
