@@ -36,9 +36,9 @@ fn it_can_move_up() {
 
     assert_eq!(4, origin.y.get());
 
-    for x in 0..19 {
+    for _ in 0..19 {
         move_up(&origin.y);
     }
 
-    assert_eq!(23, origin.y.get())
+    assert_eq!(23, origin.y.get());
 }
