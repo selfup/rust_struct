@@ -36,8 +36,8 @@ fn it_can_move_up() {
 
     assert_eq!(4, origin.y.get());
 
-    for _ in 0..19 {
-        move_up(&origin.y);
+    for _ in 0..19 { // _ instead of x so that rust does not complain about x not being used
+        move_up(&origin.y); // moves up 19 times
     }
 
     assert_eq!(23, origin.y.get());
