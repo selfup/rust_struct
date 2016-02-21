@@ -4,7 +4,7 @@ struct Coordinates {
 }
 
 fn main() {
-    let mut origin = Coordinates { x: 0, y: 0 };
+    let origin = Coordinates { x: 0, y: 0 };
 
     println!("X is {} and Y is {})", origin.x + 1, origin.y + 90);
 
