@@ -10,11 +10,14 @@ fn main() {
 
     println!("X is {:?} and Y is {:?}", origin.x, origin.y);
 
-    println!("X is {:?} and Y is {:?}", origin.x, move_up(origin.y));
+    move_up(&origin.y);
+    move_up(&origin.y);
+
+    println!("X is {:?} and Y is {:?}", origin.x, origin.y);
 }
 
-fn move_up(y_cord: Cell<i32>) -> Cell<i32> {
+fn move_up(y_cord: &Cell<i32>) -> &Cell<i32> {
     let new_val = y_cord.get();
-    y_cord.set(&new_val + 1);
-    y_cord // no semicolong here because it is the return value
+    y_cord.set(new_val + 1);
+    y_cord // no semicolon here because it is the return value
 }
