@@ -10,6 +10,8 @@ Learned how to test. Will find convention for taking test out of main file!
 
 ### To run:
 
+```git clone https://github.com/selfup/rust_struct.git && cd rust_struct```
+
 ```cargo build```
 
 ```cargo test```
