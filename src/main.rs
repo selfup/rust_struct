@@ -1,10 +1,10 @@
-struct Point {
+struct Coordinates {
     x: i32,
     y: i32,
 }
 
 fn main() {
-    let mut origin = Point { x: 0, y: 0 };
+    let mut origin = Coordinates { x: 0, y: 0 };
 
     println!("X is {} and Y is {})", origin.x + 1, origin.y + 90);
 
