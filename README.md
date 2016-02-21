@@ -11,7 +11,9 @@ Learned how to test. Will find convention for taking test out of main file!
 ### To run:
 
 ```cargo build```
+
 ```cargo test```
+
 ```cargo run```
 
 ### Disclaimer
