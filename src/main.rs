@@ -8,8 +8,6 @@ struct Coordinates {
 fn main() {
     let origin = Coordinates { x: Cell::new(0), y: Cell::new(0) };
 
-    println!("X is {:?} and Y is {:?}", origin.x, origin.y);
-
     move_up(&origin.y); // borrowing the value
     move_up(&origin.y); // so that I can change it
 
@@ -25,9 +23,8 @@ fn move_up(y_cord: &Cell<i32>) -> &Cell<i32> {
 #[test]
 fn it_can_move_up_one_pixel() {
     let origin = Coordinates { x: Cell::new(0), y: Cell::new(0) };
-    let origin_test = Coordinates { x: Cell::new(1), y: Cell::new(0) };
 
-    assert_eq!(origin_test.y, origin.y);
+    assert_eq!(0, origin.y.get());
 
     move_up(&origin.y);
 
