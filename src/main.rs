@@ -10,8 +10,8 @@ fn main() {
 
     println!("X is {:?} and Y is {:?}", origin.x, origin.y);
 
-    move_up(&origin.y);
-    move_up(&origin.y);
+    move_up(&origin.y); // borrowing the value
+    move_up(&origin.y); // so that I can change it
 
     println!("X is {:?} and Y is {:?}", origin.x, origin.y);
 }
