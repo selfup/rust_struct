@@ -15,8 +15,8 @@ fn main() {
 }
 
 fn move_up(y_cord: &Cell<i32>) -> &Cell<i32> {
-    let new_val = y_cord.get(); // Here I get the value and store it
-    y_cord.set(new_val + 1); // Here I modify the stored value and set the incoming param
+    let new_val = y_cord.get(); // get the value and store it 
+    y_cord.set(new_val + 1); // I modify the stored value and set the incoming param
     y_cord // no semicolon here because it is the return value
 }
 
