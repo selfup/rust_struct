@@ -23,5 +23,13 @@ fn move_up(y_cord: &Cell<i32>) -> &Cell<i32> {
 }
 
 #[test]
-fn it_works() {
+fn it_can_move_up_one_pixel() {
+    let origin = Coordinates { x: Cell::new(0), y: Cell::new(0) };
+    let origin_test = Coordinates { x: Cell::new(1), y: Cell::new(0) };
+
+    assert_eq!(origin_test.y, origin.y);
+
+    move_up(&origin.y);
+
+    assert_eq!(origin_test.x, origin.y);
 }
