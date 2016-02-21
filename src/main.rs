@@ -8,15 +8,15 @@ struct Coordinates {
 fn main() {
     let origin = Coordinates { x: Cell::new(0), y: Cell::new(0) };
 
-    move_up(&origin.y); // borrowing the value
-    move_up(&origin.y); // so that I can change it
+    move_up(&origin.y); // borrow the value
+    move_up(&origin.y); // so that it can change
 
     println!("X is {:?} and Y is {:?}", origin.x, origin.y);
 }
 
 fn move_up(y_cord: &Cell<i32>) -> &Cell<i32> {
-    let new_val = y_cord.get(); // get the value and store it 
-    y_cord.set(new_val + 1); // I modify the stored value and set the incoming param
+    let new_val = y_cord.get(); // get the value and store it
+    y_cord.set(new_val + 1); // modify the stored value and set the incoming param
     y_cord // no semicolon here because it is the return value
 }
 
