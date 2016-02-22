@@ -20,8 +20,14 @@ fn move_up(y_cord: &Cell<i32>) -> &Cell<i32> {
     y_cord // no semicolon here because it is the return value
 }
 
+fn move_down(y_cord: &Cell<i32>) -> &Cell<i32> {
+    let new_val = y_cord.get(); // get the value and store it
+    y_cord.set(new_val - 1); // modify the stored value and set the incoming param
+    y_cord // no semicolon here because it is the return value
+}
+
 #[test]
-fn it_can_move_up() {
+fn it_can_move() {
     let origin = Coordinates { x: Cell::new(0), y: Cell::new(0) };
 
     assert_eq!(0, origin.y.get());
@@ -41,4 +47,10 @@ fn it_can_move_up() {
     }
 
     assert_eq!(23, origin.y.get());
+
+    for _ in 0..19 {
+        move_down(&origin.y);
+    }
+
+    assert_eq!(4, origin.y.get());
 }
