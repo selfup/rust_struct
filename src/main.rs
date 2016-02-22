@@ -60,17 +60,23 @@ fn it_can_move() {
 
     assert_eq!(23, origin.y.get());
 
+    // test it can move down
+
     for _ in 0..19 {
         move_down(&origin.y);
     }
 
     assert_eq!(4, origin.y.get());
 
+    // test it can move right
+
     for _ in 0..19 {
         move_right(&origin.x);
     }
 
     assert_eq!(19, origin.x.get());
+
+    // test it can move left
 
     for _ in 0..10 {
         move_left(&origin.x);
