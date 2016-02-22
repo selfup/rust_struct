@@ -8,8 +8,8 @@ struct Coordinates {
 fn main() {
     let origin = Coordinates { x: Cell::new(0), y: Cell::new(0) };
 
-    move_up(&origin.y); // borrow the value
-    move_up(&origin.y); // so that it can change
+    move_up(&origin.y); // borrow the value so that it can change (using the '&' symbol borrows the var)
+    move_up(&origin.y);
     move_down(&origin.y);
     move_right(&origin.x);
     move_right(&origin.x);
