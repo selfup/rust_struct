@@ -10,9 +10,7 @@ fn main() {
 
     // borrow the value so that it can change (using the '&' symbol borrows the var)
     move_up(&origin.y);
-    move_up(&origin.y);
     move_down(&origin.y);
-    move_right(&origin.x);
     move_right(&origin.x);
     move_left(&origin.x);
 
@@ -47,11 +45,17 @@ fn move_left(x_cord: &Cell<i32>) -> &Cell<i32> {
 fn it_can_move() {
     let origin = Coordinates { x: Cell::new(0), y: Cell::new(0) };
 
+    // test it starts at 0
+
     assert_eq!(0, origin.y.get());
+
+    // test it can move up one
 
     move_up(&origin.y);
 
     assert_eq!(1, origin.y.get());
+
+    // test it can continue to move up and theat move logic is valid
 
     move_up(&origin.y);
     move_up(&origin.y);
