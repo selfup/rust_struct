@@ -6,15 +6,19 @@ struct Coordinates {
 }
 
 fn main() {
-    let origin = Coordinates { x: Cell::new(0), y: Cell::new(0) };
-
+    let bike = Coordinates { x: Cell::new(0), y: Cell::new(0) };
+    let mut previous_positions = vec![];
     // borrow the value so that it can change (using the '&' symbol borrows the var)
-    move_up(&origin.y);
-    move_down(&origin.y);
-    move_right(&origin.x);
-    move_left(&origin.x);
+    move_up(&bike.y);
+    previous_positions.push(&bike);
+    move_down(&bike.y);
+    previous_positions.push(&bike);
+    move_right(&bike.x);
+    previous_positions.push(&bike);
+    move_left(&bike.x);
+    previous_positions.push(&bike);
 
-    println!("X is {:?} and Y is {:?}", origin.x, origin.y);
+    println!("X is {:?}, Y is {:?}", bike.x, bike.y);
 }
 
 fn move_up(y_cord: &Cell<i32>) -> &Cell<i32> {
@@ -43,53 +47,53 @@ fn move_left(x_cord: &Cell<i32>) -> &Cell<i32> {
 
 #[test]
 fn it_can_move() {
-    let origin = Coordinates { x: Cell::new(0), y: Cell::new(0) };
+    let bike = Coordinates { x: Cell::new(0), y: Cell::new(0) };
 
     // test it starts at 0
 
-    assert_eq!(0, origin.y.get());
+    assert_eq!(0, bike.y.get());
 
     // test it can move up one
 
-    move_up(&origin.y);
+    move_up(&bike.y);
 
-    assert_eq!(1, origin.y.get());
+    assert_eq!(1, bike.y.get());
 
     // test it can continue to move up and theat move logic is valid
 
-    move_up(&origin.y);
-    move_up(&origin.y);
-    move_up(&origin.y);
+    move_up(&bike.y);
+    move_up(&bike.y);
+    move_up(&bike.y);
 
-    assert_eq!(4, origin.y.get());
+    assert_eq!(4, bike.y.get());
 
     for _ in 0..19 { // _ instead of x so that rust does not complain about x not being used
-        move_up(&origin.y); // moves up 19 times
+        move_up(&bike.y); // moves up 19 times
     }
 
-    assert_eq!(23, origin.y.get());
+    assert_eq!(23, bike.y.get());
 
     // test it can move down
 
     for _ in 0..19 {
-        move_down(&origin.y);
+        move_down(&bike.y);
     }
 
-    assert_eq!(4, origin.y.get());
+    assert_eq!(4, bike.y.get());
 
     // test it can move right
 
     for _ in 0..19 {
-        move_right(&origin.x);
+        move_right(&bike.x);
     }
 
-    assert_eq!(19, origin.x.get());
+    assert_eq!(19, bike.x.get());
 
     // test it can move left
 
     for _ in 0..10 {
-        move_left(&origin.x);
+        move_left(&bike.x);
     }
 
-    assert_eq!(9, origin.x.get());
+    assert_eq!(9, bike.x.get());
 }
