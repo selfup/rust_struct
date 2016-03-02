@@ -1,0 +1,5 @@
+CREATE TABLE coordinates (
+  id SERIAL PRIMARY KEY,
+  x INT NOT NULL,
+  y INT NOT NULL
+)
