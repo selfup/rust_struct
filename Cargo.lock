@@ -1,5 +1,5 @@
 [root]
-name = "struct_one"
+name = "rust_struct"
 version = "0.1.0"
 dependencies = [
  "diesel 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)",
