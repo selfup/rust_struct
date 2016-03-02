@@ -5,7 +5,8 @@ pub struct PreviousPosition {
     pub dead: bool,
 }
 
-pub struct Coordinates {
+pub struct Coordinate {
+    pub id: i32,
     pub x: i32,
     pub y: i32,
 }
