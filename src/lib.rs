@@ -21,7 +21,3 @@ pub fn establish_connection() -> PgConnection {
     PgConnection::establish(&database_url)
         .expect(&format!("Error connecting to {}", database_url))
 }
-
-fn main() {
-    // borrow the value so that it can change (using the '&' symbol borrows the var)
-}
