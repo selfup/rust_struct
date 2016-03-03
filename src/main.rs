@@ -10,21 +10,22 @@ fn main() {
     let mut previous_positions = vec![];
     // borrow the value so that it can change (using the '&' symbol borrows the var)
     move_up(&bike.y);
-    add_positions(&mut previous_positions);
+    add_positions(&mut previous_positions, &bike.y);
     move_down(&bike.y);
-    add_positions(&mut previous_positions);
+    add_positions(&mut previous_positions, &bike.y);
     move_right(&bike.x);
-    add_positions(&mut previous_positions);
+    add_positions(&mut previous_positions, &bike.y);
     move_left(&bike.x);
-    add_positions(&mut previous_positions);
+    add_positions(&mut previous_positions, &bike.y);
 
     println!("X is {:?}, Y is {:?}", bike.x, bike.y);
     println!("{:?}", previous_positions)
 
 }
 
-fn add_positions(vector: &mut Vec<i32>) -> &mut Vec<i32> {
-    vector.push(1);
+fn add_positions<'a>(vector: &'a mut Vec<i32>, y_cc: &Cell<i32>) -> &'a mut Vec<i32> {
+    let c_x = y_cc;
+    vector.push(c_x.get());
     vector
 }
 
