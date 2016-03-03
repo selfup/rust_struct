@@ -8,7 +8,7 @@ struct Coordinates {
 fn main() {
     let bike = Coordinates { x: Cell::new(0), y: Cell::new(0) };
     let mut previous_positions = vec![];
-    // borrow the value so that it can change (using the '&' symbol borrows the var)
+
     move_up(&bike.y);
     add_positions(&mut previous_positions, &bike.y, &bike.x);
     move_down(&bike.y);
@@ -24,35 +24,29 @@ fn main() {
 }
 
 fn add_positions<'a>(v_cc: &'a mut Vec<i32>, y: &Cell<i32>, x: &Cell<i32>) -> &'a mut Vec<i32> {
-    let c_y = y;
-    let c_x = x;
-    v_cc.push(c_x.get());
-    v_cc.push(c_y.get());
+    v_cc.push(x.get());
+    v_cc.push(y.get());
     v_cc
 }
 
 fn move_up(y_cord: &Cell<i32>) -> &Cell<i32> {
-    let new_val = y_cord.get(); // get the value and store it
-    y_cord.set(new_val + 1); // modify the stored value and set the incoming param
-    y_cord // no semicolon here because it is the return value
+    y_cord.set(y_cord.get() + 1);
+    y_cord
 }
 
 fn move_down(y_cord: &Cell<i32>) -> &Cell<i32> {
-    let new_val = y_cord.get(); // get the value and store it
-    y_cord.set(new_val - 1); // modify the stored value and set the incoming param
-    y_cord // no semicolon here because it is the return value
+    y_cord.set(y_cord.get() - 1);
+    y_cord
 }
 
 fn move_right(x_cord: &Cell<i32>) -> &Cell<i32> {
-    let new_val = x_cord.get(); // get the value and store it
-    x_cord.set(new_val + 1); // modify the stored value and set the incoming param
-    x_cord // no semicolon here because it is the return value
+    x_cord.set(x_cord.get() + 1);
+    x_cord
 }
 
 fn move_left(x_cord: &Cell<i32>) -> &Cell<i32> {
-    let new_val = x_cord.get(); // get the value and store it
-    x_cord.set(new_val - 1); // modify the stored value and set the incoming param
-    x_cord // no semicolon here because it is the return value
+    x_cord.set(x_cord.get() - 1);
+    x_cord
 }
 
 #[test]
