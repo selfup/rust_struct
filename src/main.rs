@@ -153,7 +153,7 @@ fn it_can_log_all_positions() {
 
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
 
-    assert_eq!(51, bike_one.x.get() + bike_one.y.get());
+    assert_eq!(151, bike_two.x.get() + bike_two.y.get());
 
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
 
