@@ -136,3 +136,29 @@ fn it_can_move() {
 
     assert_eq!(9, bike_one.x.get());
 }
+
+#[test]
+fn it_can_log_all_positions() {
+    let bike_one = Coordinates { x: Cell::new(0), y: Cell::new(50) };
+    let bike_two = Coordinates { x: Cell::new(100), y: Cell::new(50) };
+    let mut one_pos = vec![];
+    let mut two_pos = vec![];
+    let mut all_pos = vec![];
+
+    move_up(&bike_one.y);
+    move_up(&bike_two.y);
+    add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
+
+    assert_eq!(51, bike_one.x.get() + bike_one.y.get());
+
+    add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
+
+    assert_eq!(51, bike_one.x.get() + bike_one.y.get());
+
+    combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
+
+    let sum = all_pos.iter()
+           .fold(0, |acc, &x| acc + x);
+
+    assert_eq!(202, sum);
+}
