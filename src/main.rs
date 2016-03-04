@@ -92,9 +92,7 @@ fn it_can_move() {
     // test it can move up one and can add positions to the vector
 
     move_up(&bike_one.y);
-    add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
 
-    assert_eq!(1, bike_one.y.get());
     assert_eq!(0, one_pos[0]);
     assert_eq!(1, one_pos[1]);
 
