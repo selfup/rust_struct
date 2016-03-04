@@ -146,8 +146,7 @@ fn it_can_log_all_positions() {
 
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
 
-    let sum = all_pos.iter()
-           .fold(0, |acc, &x| acc + x);
+    let sum = all_pos.iter().fold(0, |acc, &x| acc + x);
 
     assert_eq!(202, sum);
 }
