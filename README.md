@@ -2,11 +2,9 @@
 
 ### My first real attempt at learning rust.
 
-Learning how to borrow values and increment them
+Building Tron Game (Light Cycles) logic in rust.
 
-Building some very basic movement logic
-
-Learned how to test. Will find convention for taking test out of main file!
+Tests provided in ```main.rs```
 
 ### To run:
 
@@ -21,3 +19,10 @@ Learned how to test. Will find convention for taking test out of main file!
 ### Disclaimer
 
 This is mostly test driven code. There are no plans for a CLI or GUI on this repo :P
+
+### TODO:
+
+1. Add another bike
+2. Combine both bike positions into a master array
+3. Iterate the array 2 elements at a time and compare
+4. Implement collision detection
