@@ -6,8 +6,8 @@ struct Coordinates {
 }
 
 fn main() {
-    let bike_one = Coordinates { x: Cell::new(0), y: Cell::new(0) };
-    let bike_two = Coordinates { x: Cell::new(0), y: Cell::new(0) };
+    let bike_one = Coordinates { x: Cell::new(0), y: Cell::new(50) };
+    let bike_two = Coordinates { x: Cell::new(100), y: Cell::new(50) };
     let mut one_pos = vec![];
     let mut two_pos = vec![];
     let mut all_pos = vec![];
