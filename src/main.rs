@@ -83,21 +83,12 @@ fn move_left(x_cord: &Cell<i32>) -> &Cell<i32> {
 #[test]
 fn it_can_move() {
     let bike_one = Coordinates { x: Cell::new(0), y: Cell::new(0) };
-    let mut one_pos = vec![];
-
-    // test it starts at 0
 
     assert_eq!(0, bike_one.y.get());
 
-    // test it can move up one and can add positions to the vector
+    // test it can move up and that move logic is valid
 
     move_up(&bike_one.y);
-
-    assert_eq!(0, one_pos[0]);
-    assert_eq!(1, one_pos[1]);
-
-    // test it can continue to move up and theat move logic is valid
-
     move_up(&bike_one.y);
     move_up(&bike_one.y);
     move_up(&bike_one.y);
