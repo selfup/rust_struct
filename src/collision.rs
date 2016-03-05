@@ -10,6 +10,10 @@ pub fn alive_or_dead(o_p: &mut Vec<i32>, t_p: &mut Vec<i32>, status: &mut Vec<i3
     }
 }
 
+pub fn hit_tail(a_p: &mut Vec<i32>) {
+    
+}
+
 #[test]
 fn it_can_tell_if_a_bike_died() {
     let mut one_pos = vec![];
