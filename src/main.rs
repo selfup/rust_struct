@@ -8,40 +8,39 @@ struct Coordinates {
 }
 
 fn main() {
-    collision::alive_or_dead();
     let bike_one = Coordinates { x: Cell::new(0), y: Cell::new(50) };
     let bike_two = Coordinates { x: Cell::new(100), y: Cell::new(50) };
     let mut one_pos = vec![];
     let mut two_pos = vec![];
     let mut all_pos = vec![];
 
+    collision::alive_or_dead(&mut all_pos, &mut one_pos, &mut two_pos);
     move_up(&bike_one.y);
     move_up(&bike_two.y);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead();
 
+    collision::alive_or_dead(&mut all_pos, &mut one_pos, &mut two_pos);
     move_down(&bike_one.y);
     move_down(&bike_two.y);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead();
 
+    collision::alive_or_dead(&mut all_pos, &mut one_pos, &mut two_pos);
     move_right(&bike_one.x);
     move_left(&bike_two.x);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead();
 
+    collision::alive_or_dead(&mut all_pos, &mut one_pos, &mut two_pos);
     move_left(&bike_one.x);
     move_left(&bike_two.x);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead();
 
     println!("Bike One");
     println!("X is {:?}, Y is {:?}", bike_one.x, bike_one.y);
