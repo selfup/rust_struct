@@ -8,10 +8,16 @@ pub fn alive_or_dead(o_p: &mut Vec<i32>, t_p: &mut Vec<i32>) {
     }
 }
 
+// work on deciding to not have trails or to keep trails
+
+// trails are in the combined array
+
+// basic collision is comparing latests positions
+
+// complex collision is checking position to all previous positions
+
 #[test]
 fn it_can_log_all_positions() {
     let mut two_pos = vec![];
     let mut all_pos = vec![];
-
-
 }
