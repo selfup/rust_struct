@@ -1,4 +1,4 @@
-mod game_movement;
+mod collision;
 
 use std::cell::Cell;
 
@@ -8,7 +8,7 @@ struct Coordinates {
 }
 
 fn main() {
-    game_movement::combine_moves();
+    collision::alive_or_dead();
     let bike_one = Coordinates { x: Cell::new(0), y: Cell::new(50) };
     let bike_two = Coordinates { x: Cell::new(100), y: Cell::new(50) };
     let mut one_pos = vec![];
@@ -20,28 +20,28 @@ fn main() {
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    game_movement::combine_moves();
+    collision::alive_or_dead();
 
     move_down(&bike_one.y);
     move_down(&bike_two.y);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    game_movement::combine_moves();
+    collision::alive_or_dead();
 
     move_right(&bike_one.x);
     move_left(&bike_two.x);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    game_movement::combine_moves();
+    collision::alive_or_dead();
 
     move_left(&bike_one.x);
     move_left(&bike_two.x);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    game_movement::combine_moves();
+    collision::alive_or_dead();
 
     println!("Bike One");
     println!("X is {:?}, Y is {:?}", bike_one.x, bike_one.y);

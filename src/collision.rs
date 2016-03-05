@@ -1,3 +1,3 @@
-pub fn combine_moves() {
+pub fn alive_or_dead() {
     println!("Doin stuff");
 }
