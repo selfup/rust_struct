@@ -13,34 +13,35 @@ fn main() {
     let mut one_pos = vec![];
     let mut two_pos = vec![];
     let mut all_pos = vec![];
+    let mut bike_stats = vec![];
 
     move_up(&bike_one.y);
     move_up(&bike_two.y);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead(&mut one_pos, &mut two_pos);
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
     move_down(&bike_one.y);
     move_down(&bike_two.y);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead(&mut one_pos, &mut two_pos);
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
     move_right(&bike_one.x);
     move_right(&bike_two.x);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead(&mut one_pos, &mut two_pos);
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
     move_left(&bike_one.x);
     move_left(&bike_two.x);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead(&mut one_pos, &mut two_pos);
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
     println!("Bike One");
     println!("X is {:?}, Y is {:?}", bike_one.x, bike_one.y);
