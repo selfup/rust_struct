@@ -8,51 +8,30 @@ struct Coordinates {
 }
 
 fn main() {
-    collision::alive_or_dead();
     let bike_one = Coordinates { x: Cell::new(0), y: Cell::new(50) };
-    let bike_two = Coordinates { x: Cell::new(100), y: Cell::new(50) };
+    let bike_two = Coordinates { x: Cell::new(0), y: Cell::new(50) };
     let mut one_pos = vec![];
     let mut two_pos = vec![];
     let mut all_pos = vec![];
+    let mut bike_stats = vec![];
 
     move_up(&bike_one.y);
-    move_up(&bike_two.y);
-    add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
-    add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
-    combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead();
-
-    move_down(&bike_one.y);
     move_down(&bike_two.y);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead();
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
     move_right(&bike_one.x);
     move_left(&bike_two.x);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead();
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
-    move_left(&bike_one.x);
-    move_left(&bike_two.x);
-    add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
-    add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
-    combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead();
-
-    println!("Bike One");
-    println!("X is {:?}, Y is {:?}", bike_one.x, bike_one.y);
-    println!("{:?}", one_pos);
-
-    println!("Bike Two");
-    println!("X is {:?}, Y is {:?}", bike_two.x, bike_two.y);
-    println!("{:?}", two_pos);
-
-    println!("Final combined positions are: {:?}", all_pos)
-
+    println!("Bike One: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_one.x, bike_one.y, one_pos);
+    println!("Bike Two: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_two.x, bike_two.y, two_pos);
+    println!("Combined positions are: {:?}", all_pos)
 }
 
 fn add_positions<'a>(v_cc: &'a mut Vec<i32>, y: &Cell<i32>, x: &Cell<i32>) -> &'a mut Vec<i32> {
@@ -90,46 +69,32 @@ fn move_left(x_cord: &Cell<i32>) -> &Cell<i32> {
 #[test]
 fn it_can_move() {
     let bike_one = Coordinates { x: Cell::new(0), y: Cell::new(0) };
-
     assert_eq!(0, bike_one.y.get());
 
-    // test it can move up and that move logic is valid
-
     move_up(&bike_one.y);
     move_up(&bike_one.y);
     move_up(&bike_one.y);
     move_up(&bike_one.y);
-
     assert_eq!(4, bike_one.y.get());
 
-    for _ in 0..19 { // _ instead of x so that rust does not complain about x not being used
-        move_up(&bike_one.y); // moves up 19 times
+    for _ in 0..19 {
+        move_up(&bike_one.y);
     }
-
     assert_eq!(23, bike_one.y.get());
-
-    // test it can move down
 
     for _ in 0..19 {
         move_down(&bike_one.y);
     }
-
     assert_eq!(4, bike_one.y.get());
-
-    // test it can move right
 
     for _ in 0..19 {
         move_right(&bike_one.x);
     }
-
     assert_eq!(19, bike_one.x.get());
-
-    // test it can move left
 
     for _ in 0..10 {
         move_left(&bike_one.x);
     }
-
     assert_eq!(9, bike_one.x.get());
 }
 
@@ -144,16 +109,12 @@ fn it_can_log_all_positions() {
     move_up(&bike_one.y);
     move_up(&bike_two.y);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
-
     assert_eq!(51, bike_one.x.get() + bike_one.y.get());
 
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
-
     assert_eq!(151, bike_two.x.get() + bike_two.y.get());
 
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-
     let sum = all_pos.iter().fold(0, |acc, &x| acc + x);
-
     assert_eq!(202, sum);
 }
