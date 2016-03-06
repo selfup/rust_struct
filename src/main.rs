@@ -15,23 +15,51 @@ fn main() {
     let mut all_pos = vec![];
     let mut bike_stats = vec![];
 
-    move_up(&bike_one.y);
-    move_down(&bike_two.y);
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
-    combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
-    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
+    co_pos(&mut all_pos, &mut one_pos, &mut two_pos);
 
     move_right(&bike_one.x);
     move_left(&bike_two.x);
+
+    hit_tail(&mut all_pos, &bike_one.y, &bike_one.x, &mut bike_stats);
+    hit_tail(&mut all_pos, &bike_two.y, &bike_two.x, &mut bike_stats);
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
+
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
-    combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
+    co_pos(&mut all_pos, &mut one_pos, &mut two_pos);
+
     collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
+
+    move_up(&bike_one.y);
+    move_down(&bike_two.y);
+
+    hit_tail(&mut all_pos, &bike_one.y, &bike_one.x, &mut bike_stats);
+    hit_tail(&mut all_pos, &bike_two.y, &bike_two.x, &mut bike_stats);
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
+
+    add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
+    add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
+    co_pos(&mut all_pos, &mut one_pos, &mut two_pos);
 
     println!("Bike One: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_one.x, bike_one.y, one_pos);
     println!("Bike Two: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_two.x, bike_two.y, two_pos);
     println!("Combined positions are: {:?}", all_pos)
+}
+
+fn hit_tail(a_p: &mut Vec<i32>, x: &Cell<i32>, y: &Cell<i32>, status: &mut Vec<i32>) {
+    for i in 0..a_p.len() - 1 {
+        if a_p[i] == x.get() && a_p[i + 1] == y.get() {
+            status.pop();
+            status.push(0);
+            println!("DEAD");
+        } else {
+            status.pop();
+            status.push(1);
+            println!("ALIVE");
+        }
+    }
 }
 
 fn add_positions<'a>(v_cc: &'a mut Vec<i32>, y: &Cell<i32>, x: &Cell<i32>) -> &'a mut Vec<i32> {
@@ -40,7 +68,7 @@ fn add_positions<'a>(v_cc: &'a mut Vec<i32>, y: &Cell<i32>, x: &Cell<i32>) -> &'
     v_cc
 }
 
-fn combined_positions<'a>(a_p: &'a mut Vec<i32>, o_p: &mut Vec<i32>, t_p: &mut Vec<i32>) -> &'a mut Vec<i32> {
+fn co_pos<'a>(a_p: &'a mut Vec<i32>, o_p: &mut Vec<i32>, t_p: &mut Vec<i32>) -> &'a mut Vec<i32> {
     a_p.extend_from_slice(o_p);
     a_p.extend_from_slice(t_p);
     a_p
@@ -114,7 +142,7 @@ fn it_can_log_all_positions() {
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     assert_eq!(151, bike_two.x.get() + bike_two.y.get());
 
-    combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
+    co_pos(&mut all_pos, &mut one_pos, &mut two_pos);
     let sum = all_pos.iter().fold(0, |acc, &x| acc + x);
     assert_eq!(202, sum);
 }
