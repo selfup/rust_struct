@@ -20,6 +20,8 @@ fn main() {
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
+    hit_tail(&mut all_pos, &bike_one.y, &bike_one.x, &mut bike_stats);
+    hit_tail(&mut all_pos, &bike_two.y, &bike_two.x, &mut bike_stats);
     collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
     move_right(&bike_one.x);
@@ -27,11 +29,27 @@ fn main() {
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
+    hit_tail(&mut all_pos, &bike_one.y, &bike_one.x, &mut bike_stats);
+    hit_tail(&mut all_pos, &bike_two.y, &bike_two.x, &mut bike_stats);
     collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
     println!("Bike One: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_one.x, bike_one.y, one_pos);
     println!("Bike Two: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_two.x, bike_two.y, two_pos);
     println!("Combined positions are: {:?}", all_pos)
+}
+
+fn hit_tail(a_p: &mut Vec<i32>, x: &Cell<i32>, y: &Cell<i32>, status: &mut Vec<i32>) {
+    for i in 0..a_p.len() - 1 {
+        if a_p[i] == x.get() && a_p[i + 1] == y.get() {
+            status.pop();
+            status.push(0);
+            println!("DEAD");
+        } else {
+            status.pop();
+            status.push(1);
+            println!("ALIVE");
+        }
+    }
 }
 
 fn add_positions<'a>(v_cc: &'a mut Vec<i32>, y: &Cell<i32>, x: &Cell<i32>) -> &'a mut Vec<i32> {
