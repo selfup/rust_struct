@@ -43,7 +43,6 @@ fn main() {
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     co_pos(&mut all_pos, &mut one_pos, &mut two_pos);
 
-
     println!("Bike One: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_one.x, bike_one.y, one_pos);
     println!("Bike Two: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_two.x, bike_two.y, two_pos);
     println!("Combined positions are: {:?}", all_pos)
