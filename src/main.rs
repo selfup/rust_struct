@@ -9,33 +9,40 @@ struct Coordinates {
 
 fn main() {
     let bike_one = Coordinates { x: Cell::new(0), y: Cell::new(50) };
-    let bike_two = Coordinates { x: Cell::new(100), y: Cell::new(50) };
+    let bike_two = Coordinates { x: Cell::new(0), y: Cell::new(50) };
     let mut one_pos = vec![];
     let mut two_pos = vec![];
     let mut all_pos = vec![];
     let mut bike_stats = vec![];
 
-    move_right(&bike_one.y);
-    move_left(&bike_two.y);
-
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
+
+    move_right(&bike_one.x);
+    move_left(&bike_two.x);
 
     hit_tail(&mut all_pos, &bike_one.y, &bike_one.x, &mut bike_stats);
     hit_tail(&mut all_pos, &bike_two.y, &bike_two.x, &mut bike_stats);
     collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
-    move_up(&bike_one.x);
-    move_down(&bike_two.x);
+    add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
+    add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
+    combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
+
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
+
+    move_up(&bike_one.y);
+    move_down(&bike_two.y);
+
+    hit_tail(&mut all_pos, &bike_one.y, &bike_one.x, &mut bike_stats);
+    hit_tail(&mut all_pos, &bike_two.y, &bike_two.x, &mut bike_stats);
+    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
     add_positions(&mut one_pos, &bike_one.y, &bike_one.x);
     add_positions(&mut two_pos, &bike_two.y, &bike_two.x);
     combined_positions(&mut all_pos, &mut one_pos, &mut two_pos);
 
-    hit_tail(&mut all_pos, &bike_one.y, &bike_one.x, &mut bike_stats);
-    hit_tail(&mut all_pos, &bike_two.y, &bike_two.x, &mut bike_stats);
-    collision::alive_or_dead(&mut one_pos, &mut two_pos, &mut bike_stats);
 
     println!("Bike One: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_one.x, bike_one.y, one_pos);
     println!("Bike Two: X is {:?}, Y is {:?}\nPositions: {:?}\n", bike_two.x, bike_two.y, two_pos);
