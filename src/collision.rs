@@ -3,9 +3,11 @@ pub fn alive_or_dead(o_p: &mut Vec<i32>, t_p: &mut Vec<i32>, status: &mut Vec<i3
         if t_p[x] == o_p[x] && t_p[x + 1] == o_p[x + 1]{
             status.pop();
             status.push(0);
+            println!("WICKED DEAD");
         } else {
             status.pop();
             status.push(1);
+            println!("WICKED ALIVE");
         }
     }
 }
